@@ -94,7 +94,7 @@ namespace SocketServNGK
 
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                bool result = false;
+                bool result = true;
 
                 return result;
             }
