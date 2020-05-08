@@ -146,10 +146,11 @@ namespace SocketServNGK
                                 {
                                     // Only try to send if we think the client is connected.
                                     // Second check is because we don't want to alert the sender of their own update.
-                                    if(cli.workSocket.Connected && cli.workSocket != state.workSocket)
+                                    if (cli.workSocket != state.workSocket)
                                     {
-                                        SendResponse(state, subStrings[1]);
+                                        SendResponse(cli, subStrings[1]);
                                     }
+                                      
                                 }
 
                                 SendResponse(state, String.Format($"The update was submitted to the server."));

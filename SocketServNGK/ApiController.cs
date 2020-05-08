@@ -24,7 +24,7 @@ namespace SocketServNGK
         {
             try
             {
-                HttpResponseMessage response = await client.GetAsync(address);
+                HttpResponseMessage response = await client.GetAsync("https://localhost:44328/api/WeatherObservation");
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -42,8 +42,9 @@ namespace SocketServNGK
         {
             try
             {
-                var content = new StringContent(data, Encoding.UTF8, "application/json"); // We ready the content for the Web API.
-                HttpResponseMessage response = await client.PostAsync("https://localhost:44328/api/WeatherObservation/", content);
+                var details = JsonObject.Parse(data);
+                var content = new StringContent(details.ToString(), Encoding.UTF8, "application/json"); // We ready the content for the Web API.
+                HttpResponseMessage response = await client.PostAsync("https://localhost:44328/api/WeatherObservation", content);
                 response.EnsureSuccessStatusCode();
 
                 Console.WriteLine(await response.Content.ReadAsStringAsync());
@@ -95,7 +96,7 @@ namespace SocketServNGK
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 bool result = true;
-
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", responseBody);
                 return result;
             }
             catch (Exception e)
