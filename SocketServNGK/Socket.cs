@@ -98,7 +98,7 @@ namespace SocketServNGK
                             {
                                 if (subStrings.Length < 4)
                                 {
-                                    SendResponse(state, String.Format($"ERROR: Expected credentials but got: <{subStrings[1]},{subStrings[2]}>."));
+                                    SendResponse(state, String.Format($"ERROR: Expected credentials."));
                                 }
                                 else
                                 {
