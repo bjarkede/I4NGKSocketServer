@@ -43,7 +43,7 @@ namespace SocketServNGK
             try
             {
                 var content = new StringContent(data, Encoding.UTF8, "application/json"); // We ready the content for the Web API.
-                HttpResponseMessage response = await client.PostAsync(address, content);
+                HttpResponseMessage response = await client.PostAsync("https://localhost:44328/api/WeatherObservation/", content);
                 response.EnsureSuccessStatusCode();
 
                 Console.WriteLine(await response.Content.ReadAsStringAsync());
