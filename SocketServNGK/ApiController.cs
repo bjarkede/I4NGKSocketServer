@@ -89,7 +89,7 @@ namespace SocketServNGK
                 // We need to post our JWT and get permission to get authed by the web api.\
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JWT);
 
-                HttpResponseMessage response = await client.GetAsync(address);
+                HttpResponseMessage response = await client.GetAsync("https://localhost:44328/api/User/GrantPermission");
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
